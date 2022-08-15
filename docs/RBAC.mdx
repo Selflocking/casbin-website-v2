@@ -11,7 +11,7 @@ keywords: [RBAC, role definition, role hierarchy]
 
 This section is optional. If you don't use RBAC roles in the model, then omit this section.
 
-```ini
+```model
 [role_definition]
 g = _, _
 g2 = _, _
@@ -30,7 +30,7 @@ It means ``alice`` inherits/is a member of role ``data2_admin``. ``alice`` here 
 
 Then in a matcher, you should check the role as below:
 
-```ini
+```model
 [matchers]
 m = g(r.sub, p.sub) && r.obj == p.obj && r.act == p.act
 ```
@@ -50,7 +50,7 @@ It means ``sub`` in the request should have the role ``sub`` in the policy.
 
 Conventionally subject token name in policy definition is `sub` and placed in the beginning. Now Golang Casbin supports customized token name & place.
 If the subject token name is `sub`, the subject token can be placed at an arbitrary place and no extra action needs.  If the subject token name is not `sub` , `e.SetFieldIndex()` for `constant.SubjectIndex` should be called after the enforcer is initialized regardless of its position.
-```ini
+```model
 # `subject` here for sub
 [policy_definition]
 p =  obj, act, subject

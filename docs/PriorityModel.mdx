@@ -12,7 +12,7 @@ Casbin support load policies with priority.
 It's quite simple, the order determines the priority, policy appeared earlier has higher priority.
 
 model.conf:
-```ini
+```model
 [policy_effect]
 e = priority(p.eft) || deny
 ```
@@ -28,7 +28,7 @@ The smaller priority value will have a higher priority. If there's a non-numeric
 The priority token name in policy definition is  "priority" conventionally. A customized one requires invoking `e.SetFieldIndex()` and reload policies (full example on [TestCustomizedFieldIndex](https://github.com/casbin/casbin/pull/1044) ).
 
 model.conf:
-```ini
+```model
 [policy_definition]
 p = customized_priority, sub, obj, act, eft
 ```
@@ -53,7 +53,7 @@ ok, err := e.Enforce("bob", "data2", "read") // the result will be `false, nil`
 Now, explicit priority only support `AddPolicy` & `AddPolicies`, if `UpdatePolicy` been called, you shouldn't change the priority attribute.
 
 model.conf:
-```ini
+```model
 [request_definition]
 r = sub, obj, act
 
@@ -97,7 +97,7 @@ bob, data2, write --> true // for bob has role of `data2_allow_group` which has 
 The inherited structure of roles and users can only be multiple trees, not graphs. If one user has multiple roles,you have to make sure the user has the same level in different trees. If two roles have the same level,the policy(the role corresponding) appeared earlier has higher priority. more details also see [casbin#833](https://github.com/casbin/casbin/pull/833)、[casbin#831](https://github.com/casbin/casbin/issues/831)
 
 model.conf:
-```ini
+```model
 [request_definition]
 r = sub, obj, act
 

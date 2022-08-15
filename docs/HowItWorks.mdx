@@ -44,7 +44,7 @@ The logical meaning of this example combination is: if there is a strategy that 
 
 The most basic and simplest model in Casbin is ACL. ACL's model CONF is:
 
-```ini
+```model
 # Request definition
 [request_definition]
 r = sub, obj, act
@@ -77,7 +77,7 @@ It means:
 
 We also support multi-line mode by appending '\\'  in the end:  
 
-```ini
+```model
 # Matchers
 [matchers]
 m = r.sub == p.sub && r.obj == p.obj \ 
@@ -86,7 +86,7 @@ m = r.sub == p.sub && r.obj == p.obj \
 
 Furthermore, if you are using ABAC,  you can try operator `in` like the following in Casbin **golang** edition (jCasbin and Node-Casbin are not supported yet):
 
-```ini
+```model
 # Matchers
 [matchers]
 m = r.obj == p.obj && r.act == p.act || r.obj in ('data2', 'data3')

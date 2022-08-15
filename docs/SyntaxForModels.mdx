@@ -17,7 +17,7 @@ keywords: [syntax]
 
 ``[request_definition]`` is the definition for the access request. It defines the arguments in ``e.Enforce(...)`` function.
 
-```ini
+```model
 [request_definition]
 r = sub, obj, act
 ```
@@ -28,7 +28,7 @@ r = sub, obj, act
 
 ``[policy_definition]`` is the definition for the policy. It defines the meaning of the policy. For example, we have the following model:
 
-```ini
+```model
 [policy_definition]
 p = sub, obj, act
 p2 = sub, act
@@ -58,7 +58,7 @@ The elements in a policy rule are always regarded as``string``. If you have any 
 
 ``[policy_effect]`` is the definition for the policy effect. It defines whether the access request should be approved if multiple policy rules match the request. For example, one rule permits and the other denies.
     
-```ini
+```model
 [policy_effect]
 e = some(where (p.eft == allow))
 ```
@@ -67,14 +67,14 @@ The above policy effect means if there's any matched policy rule of ``allow``, t
 
 Another example for policy effect is:
 
-```ini
+```model
 [policy_effect]
 e = !some(where (p.eft == deny))
 ```
 
 It means if there's no matched policy rules of``deny``, the final effect is ``allow`` (aka deny-override). ``some`` means: if there exists one matched policy rule. ``any`` means: all matched policy rules (not used here). The policy effect can even be connected with logic expressions:
 
-```ini
+```model
 [policy_effect]
 e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
 ```
@@ -101,7 +101,7 @@ subjectPriority(p.eft) | priority base on role | [Subject-Priority](/docs/suppor
 
 ``[matchers]`` is the definition for policy matchers. The matchers are expressions. It defines how the policy rules are evaluated against the request.
 
-```ini
+```model
 [matchers]
 m = r.sub == p.sub && r.obj == p.obj && r.act == p.act
 ```
@@ -244,7 +244,7 @@ You could also use ``in``, the only operator with a text name. This operator che
 Also refer to [rbac_model_matcher_using_in_op](https://github.com/casbin/casbin/blob/277c1a2b85698272f764d71a94d2595a8d425915/examples/rbac_model_matcher_using_in_op.conf), [keyget2_model](https://github.com/casbin/casbin/blob/277c1a2b85698272f764d71a94d2595a8d425915/examples/keyget2_model.conf) and [keyget_model](https://github.com/casbin/casbin/blob/277c1a2b85698272f764d71a94d2595a8d425915/examples/keyget_model.conf)
 
 Example:
-```ini
+```model
 [request_definition]
 r = sub, obj
 ...

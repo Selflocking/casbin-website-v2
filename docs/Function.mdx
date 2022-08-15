@@ -89,7 +89,7 @@ e.AddFunction("my_func", KeyMatchFunc)
 
 Now, you can use the function in your model CONF like this:
 
-```ini
+```model
 [matchers]
 m = r.sub == p.sub && my_func(r.obj, p.obj) && r.act == p.act
 ```

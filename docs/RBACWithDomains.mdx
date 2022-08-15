@@ -11,7 +11,7 @@ The RBAC roles in Casbin can be global or domain-specific. Domain-specify roles 
 
 The role definition with domains/tenants should be something like:
 
-```ini
+```model
 [role_definition]
 g = _, _, _
 ```
@@ -30,7 +30,7 @@ It means ``admin`` role in ``tenant1`` can read ``data1``. And ``alice`` has ``a
 
 Then in a matcher, you should check the role as below:
 
-```ini
+```model
 [matchers]
 m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && r.obj == p.obj && r.act == p.act
 ```
@@ -42,7 +42,7 @@ Please see the [rbac_with_domains_model.conf](https://github.com/casbin/casbin/b
 Note: Conventionally domain token name in policy definition is `dom` and placed as the second token(`sub, dom, obj, act`).
 Now Golang Casbin supports customized token name & place. If the domain token name is `dom`, the domain token can be placed at an arbitrary place and no extra action needs.  If the domain token name is not `dom` , `e.SetFieldIndex()` for `constant.DomainIndex` should be called after the enforcer is initialized regardless of its position.
 
-```ini
+```model
 # `domain` here for `dom`
 [policy_definition]
 p = sub, obj, act, domain
