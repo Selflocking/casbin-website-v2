@@ -20,7 +20,7 @@ jobs:
           node-version: '18.x'
 
       - name: Install markdownlint
-        run: npm install -g markdownlint-cli
+        run: npm install -g markdownlint-cli@0.35.0
 
       - name: Check Version
         run: markdownlint --version
