@@ -22,5 +22,8 @@ jobs:
       - name: Install markdownlint
         run: npm install -g markdownlint-cli
 
+      - name: Check Version
+        run: markdownlint --version
+
       - name: Run markdownlint
         run: markdownlint 'docs/**/*.{md,mdx}' --config .markdownlint.jsonc
